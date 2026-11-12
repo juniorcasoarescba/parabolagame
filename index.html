@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#071225">
+  <title>Parábola — O Laboratório das Trajetórias</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><div class="brandmark">∞</div><div><h1>PARÁBOLA</h1><span>O LABORATÓRIO DAS TRAJETÓRIAS</span></div></div>
+    <nav>
+      <button class="nav active" data-view="home">⌂ <span>Início</span></button>
+      <button class="nav" data-view="missions">◈ <span>Missões</span></button>
+      <button class="nav" data-view="lab">⚗ <span>Laboratório</span></button>
+      <button class="nav" data-view="achievements">★ <span>Conquistas</span></button>
+      <button class="nav" data-view="help">? <span>Ajuda</span></button>
+    </nav>
+    <div class="xp"><b id="levelText">NÍVEL 1</b><div class="xpbar"><i id="xpFill"></i></div><small id="xpText">0 / 100 XP</small></div>
+  </header>
+
+  <main>
+    <section id="home" class="view active-view">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">LABORATÓRIO DE INVESTIGAÇÃO MATEMÁTICA</div>
+          <h2>Não receba a resposta.<br><em>Descubra a trajetória.</em></h2>
+          <p>O Prof. Ápeiron precisa de um explorador. Ajuste funções, teste hipóteses e use a matemática para resolver situações que parecem impossíveis.</p>
+          <div class="hero-actions"><button class="primary" id="startBtn">▶ COMEÇAR MISSÃO</button><button class="secondary" data-view="lab">⚗ EXPERIMENTAR LIVREMENTE</button></div>
+          <div class="principles"><span>EXPERIMENTE</span><span>OBSERVE</span><span>FORMULE</span><span>DESCUBRA</span></div>
+        </div>
+        <div class="hero-character"><img src="assets/apeiron_explicando.png" alt="Prof. Ápeiron explicando"/><div class="quote">“Curiosidade gera mudanças.”<small>— Prof. Ápeiron</small></div></div>
+      </div>
+      <div class="world-grid"><article><b>8</b><span>MISSÕES</span></article><article><b>1</b><span>LABORATÓRIO LIVRE</span></article><article><b>∞</b><span>POSSIBILIDADES</span></article><article><b>0</b><span>RESPOSTAS PRONTAS</span></article></div>
+    </section>
+
+    <section id="missions" class="view">
+      <div class="section-head"><div><div class="eyebrow">MAPA DE EXPLORAÇÃO</div><h2>Missões</h2></div><p>Avance descobrindo relações entre coeficientes, gráfico, vértice, raízes e discriminante.</p></div>
+      <div id="missionGrid" class="mission-grid"></div>
+    </section>
+
+    <section id="lab" class="view">
+      <div class="game-layout">
+        <aside class="guide-panel">
+          <div class="guide-head"><img id="apeironAvatar" src="assets/apeiron_frente.png" alt="Prof. Ápeiron"><div><b>Prof. Ápeiron</b><small id="guideMood">observando</small></div></div>
+          <div class="speech" id="speech">Escolha uma missão ou experimente livremente. Aqui, uma hipótese vale mais do que um palpite.</div>
+          <div class="pix"><div class="pix-face">◉‿◉</div><div><b>PIX</b><p id="pixText">Laboratório pronto. Vamos experimentar?</p></div></div>
+          <div class="hint-box"><b>Como jogar</b><p>Altere <strong>a</strong>, <strong>b</strong> e <strong>c</strong>. Observe a parábola. Quando tiver uma hipótese, teste-a.</p></div>
+        </aside>
+
+        <section class="lab-panel">
+          <div class="lab-top"><div><span class="eyebrow">FUNÇÃO EM ESTUDO</span><div class="formula">f(x) = <span id="fa">1</span>x² + <span id="fb">0</span>x + <span id="fc">0</span></div></div><button class="ghost" id="resetBtn">↺ REINICIAR</button></div>
+          <div class="canvas-wrap"><canvas id="graph" aria-label="Gráfico da função quadrática"></canvas><div class="graph-legend"><label><input id="showVertex" type="checkbox" checked> Vértice</label><label><input id="showRoots" type="checkbox" checked> Raízes</label><label><input id="showAxis" type="checkbox" checked> Eixo</label></div><div id="toast" class="toast"></div></div>
+          <div class="controls">
+            <div class="slider-card a"><label><b>a</b><output id="aOut">1.00</output></label><input id="aSlider" type="range" min="-3" max="3" step="0.05" value="1"><div><small>-3</small><small>0</small><small>3</small></div></div>
+            <div class="slider-card b"><label><b>b</b><output id="bOut">0.00</output></label><input id="bSlider" type="range" min="-12" max="12" step="0.1" value="0"><div><small>-12</small><small>0</small><small>12</small></div></div>
+            <div class="slider-card c"><label><b>c</b><output id="cOut">0.00</output></label><input id="cSlider" type="range" min="-12" max="12" step="0.1" value="0"><div><small>-12</small><small>0</small><small>12</small></div></div>
+          </div>
+          <div class="properties" id="properties"></div>
+        </section>
+
+        <aside class="mission-panel">
+          <div class="mission-kicker" id="missionKicker">LABORATÓRIO LIVRE</div><h3 id="missionTitle">Explore sem objetivo</h3><p id="missionDesc">Manipule os coeficientes e veja o que acontece. Você pode abrir uma missão a qualquer momento.</p><div id="objective" class="objective">Escolha uma missão para receber um desafio.</div>
+          <div class="hint-area"><button class="hint-btn" id="hintBtn">💡 PEDIR UMA PISTA</button><div id="hintText"></div></div>
+          <div class="mission-actions"><button class="primary" id="testBtn">▶ TESTAR TRAJETÓRIA</button><button class="secondary" id="nextBtn" disabled>PRÓXIMA MISSÃO →</button></div>
+          <div class="mini-list"><b>PROGRESSO</b><div id="progressList"></div></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="achievements" class="view"><div class="section-head"><div><div class="eyebrow">REGISTRO DE DESCOBERTAS</div><h2>Conquistas</h2></div><p>Conquistas são liberadas por explorar, resolver e criar — não apenas por responder rápido.</p></div><div id="achievementGrid" class="achievement-grid"></div></section>
+
+    <section id="help" class="view"><div class="section-head"><div><div class="eyebrow">GUIA DO EXPLORADOR</div><h2>Como jogar</h2></div></div><div class="help-grid"><article><h3>1. Experimente</h3><p>Mova os controles de <b>a</b>, <b>b</b> e <b>c</b>. A curva muda em tempo real.</p></article><article><h3>2. Observe</h3><p>O painel mostra vértice, eixo de simetria, discriminante e raízes. Você decide quando usar essas informações.</p></article><article><h3>3. Formule uma hipótese</h3><p>Antes de testar, pense no que precisa acontecer com a trajetória.</p></article><article><h3>4. Teste</h3><p>O botão de teste anima uma trajetória. Em caso de erro, Ápeiron oferece uma pista sem entregar a resposta.</p></article><article><h3>5. Descubra</h3><p>As missões vão da exploração de <i>a</i>, <i>b</i> e <i>c</i> até reconstrução e engenharia de parábolas.</p></article><article><h3>6. Crie</h3><p>No Laboratório Livre, qualquer função é permitida. Tente construir sua própria trajetória.</p></article></div></section>
+  </main>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
